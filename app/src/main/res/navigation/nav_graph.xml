@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/confirmCitaFragment"
+        android:name="com.example.lab5_iot.ConfirmCitaFragment"
+        android:label=""
+        tools:layout="@layout/fragment_confirm_cita" >
+        <action
+            android:id="@+id/action_confirmCitaFragment_to_listaDocsFragment"
+            app:destination="@id/listaDocsFragment"
+            app:popUpTo="@id/listaDocsFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/listaDocsFragment"
+        android:name="com.example.lab5_iot.ListaDocsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_lista_docs" >
+        <action
+            android:id="@+id/action_listaDocsFragment_to_perfilDoctorFragment"
+            app:destination="@id/perfilDoctorFragment"
+            app:popUpTo="@id/perfilDoctorFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_listaDocsFragment_to_perfilUserFragment"
+            app:destination="@id/perfilUserFragment"
+            app:popUpTo="@id/perfilUserFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.lab5_iot.LoginFragment"
+        android:label=""
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_listaDocsFragment"
+            app:destination="@id/listaDocsFragment"
+            app:popUpTo="@id/listaDocsFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_loginFragment_to_registroFragment"
+            app:destination="@id/registroFragment"
+            app:popUpTo="@id/registroFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/perfilDoctorFragment"
+        android:name="com.example.lab5_iot.PerfilDoctorFragment"
+        android:label=""
+        tools:layout="@layout/fragment_perfil_doctor" >
+        <action
+            android:id="@+id/action_perfilDoctorFragment_to_confirmCitaFragment"
+            app:destination="@id/confirmCitaFragment"
+            app:popUpTo="@id/confirmCitaFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/registroFragment"
+        android:name="com.example.lab5_iot.RegistroFragment"
+        android:label=""
+        tools:layout="@layout/fragment_registro" >
+        <action
+            android:id="@+id/action_registroFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/perfilUserFragment"
+        android:name="com.example.lab5_iot.PerfilUserFragment"
+        android:label=""
+        tools:layout="@layout/fragment_perfil_user" >
+        <action
+            android:id="@+id/action_perfilUserFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

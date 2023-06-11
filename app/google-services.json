@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "632561016717",
+    "project_id": "lab5iot-85059",
+    "storage_bucket": "lab5iot-85059.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632561016717:android:56d8e9477ed70c95e8a7c4",
+        "android_client_info": {
+          "package_name": "com.example.lab5_iot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632561016717-kq7j5jktd8050kl5epgugpv72fkt207q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdUCQvctCcBNBoTlg_pgH5GSgjI48WUCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632561016717-kq7j5jktd8050kl5epgugpv72fkt207q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
