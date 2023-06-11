@@ -1,4 +1,4 @@
-package com.example.lab5_iot;
+package com.example.lab5_iot.Fragments;
 
 import android.os.Bundle;
 
@@ -8,15 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.lab5_iot.databinding.FragmentConfirmCitaBinding;
+import com.example.lab5_iot.databinding.FragmentPerfilUserBinding;
 
-public class ConfirmCitaFragment extends Fragment {
+public class PerfilUserFragment extends Fragment {
 
-    FragmentConfirmCitaBinding binding;
+    FragmentPerfilUserBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentConfirmCitaBinding.inflate(inflater, container, false);
+        binding = FragmentPerfilUserBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 }

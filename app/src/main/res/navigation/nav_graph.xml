@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/confirmCitaFragment"
-        android:name="com.example.lab5_iot.ConfirmCitaFragment"
+        android:name="com.example.lab5_iot.Fragments.ConfirmCitaFragment"
         android:label=""
         tools:layout="@layout/fragment_confirm_cita" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/listaDocsFragment"
-        android:name="com.example.lab5_iot.ListaDocsFragment"
+        android:name="com.example.lab5_iot.Fragments.ListaDocsFragment"
         android:label=""
         tools:layout="@layout/fragment_lista_docs" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.lab5_iot.LoginFragment"
+        android:name="com.example.lab5_iot.Fragments.LoginFragment"
         android:label=""
         tools:layout="@layout/fragment_login" >
         <action
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/perfilDoctorFragment"
-        android:name="com.example.lab5_iot.PerfilDoctorFragment"
+        android:name="com.example.lab5_iot.Fragments.PerfilDoctorFragment"
         android:label=""
         tools:layout="@layout/fragment_perfil_doctor" >
         <action
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/registroFragment"
-        android:name="com.example.lab5_iot.RegistroFragment"
+        android:name="com.example.lab5_iot.Fragments.RegistroFragment"
         android:label=""
         tools:layout="@layout/fragment_registro" >
         <action
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/perfilUserFragment"
-        android:name="com.example.lab5_iot.PerfilUserFragment"
+        android:name="com.example.lab5_iot.Fragments.PerfilUserFragment"
         android:label=""
         tools:layout="@layout/fragment_perfil_user" >
         <action
