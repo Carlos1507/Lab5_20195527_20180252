@@ -2,4 +2,7 @@
     <string name="app_name">Lab5_IoT</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="facebook_application_id">637454748419715</string>
+    <string name="fb_login_protocol_scheme">fb637454748419715</string>
+    <string name="facebook_client_token">1a558fb1030232df13b7e8f619fcfc16</string>
 </resources>
