@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
                         new AuthUI.IdpConfig.EmailBuilder().build(),
                         new AuthUI.IdpConfig.GoogleBuilder().build(),
                         new AuthUI.IdpConfig.FacebookBuilder().build()
-                )).build();
+                ))
+                .setIsSmartLockEnabled(false).build();
         signInLauncher.launch(intent);
     }
     ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
