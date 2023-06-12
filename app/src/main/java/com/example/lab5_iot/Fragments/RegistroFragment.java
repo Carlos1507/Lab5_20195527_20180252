@@ -42,7 +42,7 @@ public class RegistroFragment extends Fragment {
         binding = FragmentRegistroBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
-
+/*
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -67,6 +67,7 @@ public class RegistroFragment extends Fragment {
     private void registro_facebook(){
 
     }
+
 
 
     private void registro() {
@@ -114,5 +115,7 @@ public class RegistroFragment extends Fragment {
         input.setError(s);
         input.requestFocus();
     }
+
+ */
 
 }

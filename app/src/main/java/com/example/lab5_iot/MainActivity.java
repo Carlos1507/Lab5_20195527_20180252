@@ -1,7 +1,11 @@
 package com.example.lab5_iot;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHostController;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar!=null){
+            actionBar.hide();
+        }
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout.Builder(R.layout.fragment_login)
@@ -50,8 +58,11 @@ public class MainActivity extends AppCompatActivity {
             result -> {
                 if (result.getResultCode() == RESULT_OK){
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    Log.d("msg-tst", "firebase UID: "+user.getUid());
-                    Log.d("msg-tst", "username"+ user.getEmail());
+                    User usuarioLogueado = new User();
+                    usuarioLogueado.setCorreo(user.getEmail());
+                    UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+                    userViewModel.getUsuarioLogueado().setValue(usuarioLogueado);
+                    Log.d("exito","exito");
                 }else{
                     Log.e("mgs-tst","Canceló el flujo");
                 }
