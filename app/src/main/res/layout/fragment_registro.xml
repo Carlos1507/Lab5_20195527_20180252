@@ -256,7 +256,7 @@
         android:textSize="16sp"
         android:textColor="#198eb6"
         android:clickable="true"
-        android:text="Ya tienes cuenta? Ingre"
+        android:text="Ya tienes cuenta? Ingresa"
         android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginFacebook"
