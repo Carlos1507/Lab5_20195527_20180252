@@ -1,14 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.RegistroFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/averiasanslibreregular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="0sp"
+        android:text="Crear Nueva Cuenta"
+        android:textColor="@color/tituloCeleste"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/averiasanslibreregular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="0sp"
+        android:text="Nombre"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+    <EditText
+        android:id="@+id/editTextNombre"
+        android:layout_width="334dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_rounded_background"
+        android:ems="10"
+        android:fontFamily="@font/averiasanslibrebold"
+        android:hint="Ingrese su nombre completo"
+        android:inputType="textPersonName"
+        android:paddingStart="29.5dp"
+        android:textColor="#858585"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelNombre" />
+
+
+    <TextView
+        android:id="@+id/labelPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="128dp"
+        android:fontFamily="@font/averiasanslibreregular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="0sp"
+        android:text="Contraseña"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="334dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_rounded_background"
+        android:ems="10"
+        android:fontFamily="@font/averiasanslibrebold"
+        android:hint="Ingrese su Contraseña"
+        android:inputType="textPersonName"
+        android:paddingStart="29.5dp"
+        android:textColor="#858585"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelPassword" />
+
+    <TextView
+        android:id="@+id/labelCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="240dp"
+        android:fontFamily="@font/averiasanslibreregular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="0sp"
+        android:text="Correo"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+    <EditText
+        android:id="@+id/editTextCorreo"
+        android:layout_width="334dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_rounded_background"
+        android:ems="10"
+        android:fontFamily="@font/averiasanslibrebold"
+        android:hint="Ingrese su Correo"
+        android:inputType="textPersonName"
+        android:paddingStart="29.5dp"
+        android:textColor="#858585"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelCorreo" />
+
+
+    <TextView
+        android:id="@+id/labelTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="352dp"
+        android:fontFamily="@font/averiasanslibreregular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="0sp"
+        android:text="Numero de Telefono"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+    <EditText
+        android:id="@+id/editTextTelefono"
+        android:layout_width="334dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_rounded_background"
+        android:ems="10"
+        android:fontFamily="@font/averiasanslibrebold"
+        android:hint="Ingrese su Numero de Telefono"
+        android:inputType="textPersonName"
+        android:paddingStart="29.5dp"
+        android:textColor="#858585"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelTelefono" />
+
+    <Button
+        android:id="@+id/ingresar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="26.7dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="26.7dp"
+        android:backgroundTint="#198eb6"
+        android:fontFamily="@font/averiasanslibrebold"
+        android:inputType="textPersonName"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="0sp"
+        android:paddingStart="29.5dp"
+        android:text="Ingresar"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTelefono" />
+
+    <Button
+        android:id="@+id/loginGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="-1.5dp"
+        android:layout_marginStart="26.7dp"
+        android:layout_marginEnd="26.7dp"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="0sp"
+        android:inputType="textPersonName"
+        android:backgroundTint="@color/white"
+        android:paddingStart="29.5dp"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/averiasanslibrebold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ingresar"
+        android:text="Sign in with Google" />
+    <Button
+        android:id="@+id/loginFacebook"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="-1.5dp"
+        android:layout_marginStart="26.7dp"
+        android:layout_marginEnd="26.7dp"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="0sp"
+        android:inputType="textPersonName"
+        android:backgroundTint="#415e9a"
+        android:paddingStart="29.5dp"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/averiasanslibrebold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginGoogle"
+        android:text="Sign in with Facebook" />
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/google"
+        android:layout_marginStart="12dp"
+        android:elevation="10dp"
+        app:layout_constraintTop_toTopOf="@id/loginGoogle"
+        app:layout_constraintStart_toStartOf="@id/loginGoogle"
+        />
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/facebook"
+        android:layout_marginStart="12dp"
+        android:elevation="10dp"
+        app:layout_constraintTop_toTopOf="@id/loginFacebook"
+        app:layout_constraintStart_toStartOf="@id/loginFacebook"
+        />
+    <TextView
+        android:id="@+id/registrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/averiasanslibrebold"
+        android:textStyle="normal"
+        android:textSize="16sp"
+        android:textColor="#198eb6"
+        android:clickable="true"
+        android:text="Ya tienes cuenta? Ingre"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginFacebook"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
