@@ -55,7 +55,7 @@ public class PerfilDoctorFragment extends Fragment {
                 DoctorDtoBD doctorDtoBD = snapshot.getValue(DoctorDtoBD.class);
                 Glide.with(getContext()).load(doctorDtoBD.getFotoDoctor()).into(binding.fotoDoctor);
                 binding.correo.setText(doctorDtoBD.getCorreo());
-                binding.nombreDoctor.setText(doctorDtoBD.getNombre());
+                binding.nombreDoctor.setText("Dr. "+doctorDtoBD.getNombre());
                 binding.genero.setText(doctorDtoBD.getGenero());
                 binding.username.setText(doctorDtoBD.getUsername());
                 binding.costo.setText("S/ "+String.valueOf(doctorDtoBD.getCosto()));
@@ -80,16 +80,29 @@ public class PerfilDoctorFragment extends Fragment {
                 user.setDoctorConsulta(doctorUsername);
 
                 Log.d(TAG, "Doctor Consulta: " + user.getDoctorConsulta());
+                Log.d(TAG,"User KEY"+user.getKey());
 
                 // Actualizar el objeto User en la base de datos
 
                 // Navegar a la vista de confirmación de cita y pasar los argumentos
                 Bundle args = new Bundle();
-                args.putString("usernameDoctor", doctorUsername);
-                navController.navigate(R.id.action_perfilDoctorFragment_to_confirmCitaFragment, args);
+
+                databaseReference.child("doctors").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        DoctorDtoBD doctorDtoBD = snapshot.getValue(DoctorDtoBD.class);
+                        args.putString("usernameDoctor", doctorDtoBD.getNombre());
+                        navController.navigate(R.id.action_perfilDoctorFragment_to_confirmCitaFragment, args);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                databaseReference.child("users").child(user.getKey()).setValue(user);
             }
         });
-
 
         binding.regresar.setOnClickListener(view -> {
             navController.navigate(R.id.action_perfilDoctor_to_listaDocsFragment);
