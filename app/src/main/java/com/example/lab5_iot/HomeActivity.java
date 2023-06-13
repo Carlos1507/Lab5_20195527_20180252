@@ -7,8 +7,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.lab5_iot.DTOs.User;
 import com.example.lab5_iot.Fragments.LoginFragment;
@@ -26,6 +28,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.Arrays;
 
@@ -40,26 +49,48 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
         binding.registrate.setOnClickListener(view ->{
-            Log.d("msg", "registrooooooo");
+            Intent intent = new Intent(this, RegistroActivity.class);
+            startActivity(intent);
         });
         binding.ingresar.setOnClickListener(view -> {
-           /* String correo = binding.editTextCorreo.getText().toString();
+            binding.errorLogin.setVisibility(View.INVISIBLE);
+            String correo = binding.editTextCorreo.getText().toString();
             String contrasenia = binding.editTextContrasenia.getText().toString();
-
-            */
-            AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Log.d("infoApp", "logout exitoso");
+            Query query = userRef.orderByChild("correo").equalTo(correo);
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = new User();
+                    if (snapshot !=null){
+                        for (DataSnapshot userSnapshot: snapshot.getChildren()){
+                            user = userSnapshot.getValue(User.class);
+                            Log.d("user",user.getCorreo());
+                            if (user.getContrasenia().equals(contrasenia)) {
+                                Log.d("msg","logueo exitoso");
+                                SharedPreferences sharedPreferences = getSharedPreferences("Preferences",MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                Gson gson = new Gson();
+                                editor.putString("user",gson.toJson(user));
+                                editor.apply();
+                                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }else{
+                                binding.errorLogin.setVisibility(View.VISIBLE);
+                            }
                         }
-                    });
-            UserViewModel viewModel = new ViewModelProvider(this).get(UserViewModel.class);
-            viewModel.getUsuarioLogueado().postValue(null);
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
+                    }else{
+                        Log.d("msg", "no encontrado");
+                        binding.errorLogin.setVisibility(View.VISIBLE);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
         });
         FirebaseAuth auth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -74,21 +105,6 @@ public class HomeActivity extends AppCompatActivity {
             startActivityForResult(intent, RC_SIGN_INT);
         });
     }
-    ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
-            new FirebaseAuthUIActivityResultContract(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    User usuarioLogueado = new User();
-                    usuarioLogueado.setCorreo(user.getEmail());
-                    UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-                    userViewModel.getUsuarioLogueado().setValue(usuarioLogueado);
-                    Log.d("exito","exito");
-                }else{
-                    Log.e("mgs-tst","Canceló el flujo");
-                }
-            }
-    );
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -101,7 +117,23 @@ public class HomeActivity extends AppCompatActivity {
     private void handleSignInResult(GoogleSignInResult result){
         if (result.isSuccess()){
             GoogleSignInAccount acct = result.getSignInAccount();
-            Log.d("acct", acct.getDisplayName());
+            Log.d("acct", "Usuario logueado con google");
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = firebaseDatabase.getReference("users");
+            User user = new User();
+            user.setKey(acct.getId());
+            user.setNombre(acct.getGivenName());
+            user.setApellido(acct.getFamilyName());
+            user.setCorreo(acct.getEmail());
+            databaseReference.child(user.getKey()).setValue(user);
+            SharedPreferences sharedPreferences = getSharedPreferences("Preferences",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            Gson gson = new Gson();
+            editor.putString("user",gson.toJson(user));
+            editor.apply();
+            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+            startActivity(intent);
+
         }
     }
 

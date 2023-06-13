@@ -4,21 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".RegistroActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical" >
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/titulo"
                     android:layout_width="wrap_content"
@@ -28,7 +27,7 @@
                     android:gravity="center_horizontal"
                     android:letterSpacing="-0.02"
                     android:lineSpacingExtra="0sp"
-                    android:text="Bienvenidoo"
+                    android:text="Crear Nueva Cuenta"
                     android:textColor="@color/tituloCeleste"
                     android:textSize="26sp"
                     android:textStyle="bold"
@@ -37,151 +36,165 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/descripcion"
-                    android:layout_width="372.1dp"
+                    android:id="@+id/labelNombre"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/averiasanslibreregular"
-                    android:textStyle="normal"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="41dp"
+                    android:gravity="center_horizontal"
                     android:letterSpacing="-0.02"
                     android:lineSpacingExtra="0sp"
-                    android:gravity="center_horizontal"
-                    android:text="TeleDoctor es un app diseñada por estudiantes de Ingenieria de Telecomunicaciones"
+                    android:text="Nombre"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+                <EditText
+                    android:id="@+id/editTextNombre"
+                    android:layout_width="334dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_rounded_background"
+                    android:ems="10"
+                    android:fontFamily="@font/averiasanslibrebold"
+                    android:hint="Ingrese su nombre completo"
+                    android:inputType="textPersonName"
+                    android:paddingStart="29.5dp"
+                    android:textColor="#858585"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/titulo"/>
-                <RelativeLayout
-                    android:id="@+id/viewInicioSesion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="260dp"
+                    app:layout_constraintHorizontal_bias="0.493"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="54dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/descripcion">
-                    <TextView
-                        android:id="@+id/labelCorreo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="26.7dp"
-                        android:layout_marginEnd="26.7dp"
-                        android:fontFamily="@font/averiasanslibreregular"
-                        android:textStyle="normal"
-                        android:textSize="22sp"
-                        android:textColor="#000000"
-                        android:letterSpacing="-0.02"
-                        android:lineSpacingExtra="0sp"
-                        android:gravity="center_horizontal"
-                        android:text="Correo"/>
-                    <TextView
-                        android:id="@+id/labelContras"
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="26.7dp"
-                        android:layout_marginEnd="26.7dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/averiasanslibreregular"
-                        android:textStyle="normal"
-                        android:textSize="22sp"
-                        android:textColor="#000000"
-                        android:letterSpacing="-0.02"
-                        android:layout_marginTop="126dp"
-                        android:lineSpacingExtra="0sp"
-                        android:gravity="center_horizontal"
-                        android:text="Contraseña"
-                        app:layout_constraintTop_toBottomOf="@id/editTextCorreo"
-                        />
+                    app:layout_constraintTop_toBottomOf="@+id/labelNombre" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="236dp"
-                        android:layout_marginEnd="26.7dp"
-                        android:layout_marginBottom="1dp"
-                        android:fontFamily="@font/averiasanslibreregular"
-                        android:letterSpacing="-0.02"
-                        android:lineSpacingExtra="0sp"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="normal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:text="Recuperar contraseña" />
-
-                    <EditText
-                        android:id="@+id/editTextCorreo"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="26.7dp"
-                        android:layout_marginEnd="26.7dp"
-                        android:layout_below="@+id/labelCorreo"
-                        android:layout_marginTop="18dp"
-                        android:ems="10"
-                        android:background="@drawable/edittext_rounded_background"
-                        android:inputType="textPersonName"
-                        android:paddingStart="29.5dp"
-                        android:textColor="#858585"
-                        android:fontFamily="@font/averiasanslibrebold"
-                        android:hint="Ingrese su correo" />
-                    <EditText
-                        android:id="@+id/editTextContrasenia"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="26.7dp"
-                        android:layout_marginEnd="26.7dp"
-                        android:layout_below="@+id/labelCorreo"
-                        android:layout_marginTop="144dp"
-                        android:ems="10"
-                        android:background="@drawable/edittext_rounded_background"
-                        android:inputType="textPersonName"
-                        android:paddingStart="29.5dp"
-                        android:textColor="#858585"
-                        android:fontFamily="@font/averiasanslibrebold"
-                        android:hint="Ingrese su contraseña" />
-
-                </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/errorLogin"
+                    android:id="@+id/labelPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="128dp"
                     android:fontFamily="@font/averiasanslibreregular"
+                    android:gravity="center_horizontal"
                     android:letterSpacing="-0.02"
                     android:lineSpacingExtra="0sp"
-                    android:visibility="invisible"
-                    android:textColor="#FF0000"
-                    android:textSize="18sp"
+                    android:text="Contraseña"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+                <EditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="334dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_rounded_background"
+                    android:ems="10"
+                    android:fontFamily="@font/averiasanslibrebold"
+                    android:hint="Ingrese su Contraseña"
+                    android:inputType="textPersonName"
+                    android:paddingStart="29.5dp"
+                    android:textColor="#858585"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/ingresar"
-                    android:text="Usuario y/o contraseña incorrectos" />
+                    app:layout_constraintHorizontal_bias="0.493"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelPassword" />
+
+                <TextView
+                    android:id="@+id/labelCorreo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="240dp"
+                    android:fontFamily="@font/averiasanslibreregular"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="0sp"
+                    android:text="Correo"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+                <EditText
+                    android:id="@+id/editTextCorreo"
+                    android:layout_width="334dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_rounded_background"
+                    android:ems="10"
+                    android:fontFamily="@font/averiasanslibrebold"
+                    android:hint="Ingrese su Correo"
+                    android:inputType="textPersonName"
+                    android:paddingStart="29.5dp"
+                    android:textColor="#858585"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.493"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelCorreo" />
+
+
+                <TextView
+                    android:id="@+id/labelTelefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="352dp"
+                    android:fontFamily="@font/averiasanslibreregular"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="0sp"
+                    android:text="Numero de Telefono"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+                <EditText
+                    android:id="@+id/editTextTelefono"
+                    android:layout_width="334dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_rounded_background"
+                    android:ems="10"
+                    android:fontFamily="@font/averiasanslibrebold"
+                    android:hint="Ingrese su Numero de Telefono"
+                    android:inputType="textPersonName"
+                    android:paddingStart="29.5dp"
+                    android:textColor="#858585"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.467"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelTelefono" />
+
                 <Button
-                    android:id="@+id/ingresar"
+                    android:id="@+id/registrarse"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginStart="26.7dp"
-                    android:layout_marginTop="55dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="26.7dp"
                     android:backgroundTint="#198eb6"
                     android:fontFamily="@font/averiasanslibrebold"
-                    android:inputType="textPersonName"
                     android:letterSpacing="-0.02"
                     android:lineSpacingExtra="0sp"
                     android:paddingStart="29.5dp"
-                    android:text="Ingresar"
+                    android:text="Registrarse"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewInicioSesion" />
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTelefono" />
+
                 <Button
                     android:id="@+id/loginGoogle"
                     android:layout_width="match_parent"
@@ -200,7 +213,7 @@
                     android:fontFamily="@font/averiasanslibrebold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ingresar"
+                    app:layout_constraintTop_toBottomOf="@id/registrarse"
                     android:text="Sign in with Google" />
                 <Button
                     android:id="@+id/loginFacebook"
@@ -243,7 +256,7 @@
                     app:layout_constraintStart_toStartOf="@id/loginFacebook"
                     />
                 <TextView
-                    android:id="@+id/registrate"
+                    android:id="@+id/login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/averiasanslibrebold"
@@ -251,12 +264,13 @@
                     android:textSize="16sp"
                     android:textColor="#198eb6"
                     android:clickable="true"
-                    android:text="Eres nuevo? Registrate"
+                    android:text="Ya tienes cuenta? Ingresa"
                     android:layout_marginBottom="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/loginFacebook"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>

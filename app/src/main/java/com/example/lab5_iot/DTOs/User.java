@@ -2,10 +2,29 @@ package com.example.lab5_iot.DTOs;
 
 public class User {
     private String nombre;
-    private String contraseniaa;
+    private String apellido;
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    private String contrasenia;
     private String correo;
     private String telefono;
     private String doctorConsulta;
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getNombre() {
         return nombre;
@@ -15,12 +34,12 @@ public class User {
         this.nombre = nombre;
     }
 
-    public String getContraseniaa() {
-        return contraseniaa;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setContraseniaa(String contraseniaa) {
-        this.contraseniaa = contraseniaa;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public String getCorreo() {

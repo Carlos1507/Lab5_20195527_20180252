@@ -1,6 +1,8 @@
 package com.example.lab5_iot.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.lab5_iot.DTOs.User;
+import com.example.lab5_iot.HomeActivity;
 import com.example.lab5_iot.MainActivity;
 import com.example.lab5_iot.R;
 import com.example.lab5_iot.UserViewModel;
@@ -22,6 +26,7 @@ import com.example.lab5_iot.databinding.FragmentPerfilUserBinding;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
 
 public class PerfilUserFragment extends Fragment {
 
@@ -31,6 +36,16 @@ public class PerfilUserFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentPerfilUserBinding.inflate(inflater, container, false);
         NavController navController = NavHostFragment.findNavController(this);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        User user = gson.fromJson(sharedPreferences.getString("user",""), User.class);
+        if (user.getApellido()!=null){
+            binding.nombreUser.setText(user.getNombre()+user.getApellido());
+        }else{
+            binding.nombreUser.setText(user.getNombre());
+        }
+
         binding.regresar.setOnClickListener(view -> {
             navController.navigate(R.id.action_perfilUserFragment_to_listaDocsFragment);
         });
@@ -43,9 +58,9 @@ public class PerfilUserFragment extends Fragment {
                             Log.d("infoApp", "logout exitoso");
                         }
                     });
-            UserViewModel viewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
-            viewModel.getUsuarioLogueado().postValue(null);
-            Intent intent = new Intent(getActivity(), MainActivity.class);
+            editor.remove("user");
+            editor.apply();
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
             startActivity(intent);
         });
         return binding.getRoot();

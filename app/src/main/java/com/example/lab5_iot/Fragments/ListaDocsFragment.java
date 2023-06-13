@@ -1,5 +1,7 @@
 package com.example.lab5_iot.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.LongDef;
@@ -19,6 +21,7 @@ import android.view.ViewGroup;
 import com.example.lab5_iot.DTOs.DoctorDtoBD;
 import com.example.lab5_iot.DTOs.DoctorResult;
 import com.example.lab5_iot.DTOs.RandomUser;
+import com.example.lab5_iot.DTOs.User;
 import com.example.lab5_iot.DoctoresAdapter;
 import com.example.lab5_iot.R;
 import com.example.lab5_iot.Services.DoctorService;
@@ -28,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +59,11 @@ public class ListaDocsFragment extends Fragment {
                              Bundle savedInstanceState) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
+        Gson gson = new Gson();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        User usuario = gson.fromJson(sharedPreferences.getString("user",""), User.class);
         binding = FragmentListaDocsBinding.inflate(inflater, container, false);
+        binding.nombreUser.setText(usuario.getNombre());
         List<DoctorDtoBD> listaDoctores = new ArrayList<>();
         NavController navController = NavHostFragment.findNavController(this);
 
@@ -70,6 +78,7 @@ public class ListaDocsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
             }
 
             @Override
