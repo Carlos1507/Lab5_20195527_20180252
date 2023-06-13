@@ -266,4 +266,20 @@
         </LinearLayout>
     </ScrollView>
 
+    <Button
+        android:id="@+id/buttonCita"
+        android:layout_width="308dp"
+        android:layout_height="64dp"
+        android:backgroundTint="#198EB6"
+        android:text="Agendar cita"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.961" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,9 @@
 package com.example.lab5_iot.Fragments;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.lab5_iot.DTOs.DoctorDtoBD;
+import com.example.lab5_iot.DTOs.User;
 import com.example.lab5_iot.R;
 import com.example.lab5_iot.databinding.FragmentPerfilDoctorBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -21,11 +26,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 public class PerfilDoctorFragment extends Fragment {
 
     FragmentPerfilDoctorBinding binding;
     FirebaseDatabase firebaseDatabase;
+
+    private String doctorUsername;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,6 +42,13 @@ public class PerfilDoctorFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         NavController navController = NavHostFragment.findNavController(this);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        User user = gson.fromJson(sharedPreferences.getString("user",""), User.class);
+
+
         databaseReference.child("doctors").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -56,6 +71,26 @@ public class PerfilDoctorFragment extends Fragment {
 
             }
         });
+
+        doctorUsername = getArguments().getString("usernameDoctor");
+        binding.buttonCita.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Guardar el username del doctor en el objeto User
+                user.setDoctorConsulta(doctorUsername);
+
+                Log.d(TAG, "Doctor Consulta: " + user.getDoctorConsulta());
+
+                // Actualizar el objeto User en la base de datos
+
+                // Navegar a la vista de confirmación de cita y pasar los argumentos
+                Bundle args = new Bundle();
+                args.putString("usernameDoctor", doctorUsername);
+                navController.navigate(R.id.action_perfilDoctorFragment_to_confirmCitaFragment, args);
+            }
+        });
+
+
         binding.regresar.setOnClickListener(view -> {
             navController.navigate(R.id.action_perfilDoctor_to_listaDocsFragment);
         });
