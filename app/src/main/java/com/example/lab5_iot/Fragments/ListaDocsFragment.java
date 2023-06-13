@@ -9,6 +9,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,9 @@ public class ListaDocsFragment extends Fragment {
             .build()
             .create(DoctorService.class);
 
+    private DoctoresAdapter doctoresAdapter;
+    private List<DoctorDtoBD> listaDoctoresCompleta = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,27 +58,46 @@ public class ListaDocsFragment extends Fragment {
         binding = FragmentListaDocsBinding.inflate(inflater, container, false);
         List<DoctorDtoBD> listaDoctores = new ArrayList<>();
         NavController navController = NavHostFragment.findNavController(this);
+
+        doctoresAdapter = new DoctoresAdapter();
+        doctoresAdapter.setContext(getContext());
+        doctoresAdapter.setNavController(navController);
+
+        binding.filtroDoctor.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                doctoresAdapter.filtrarDoctores(s.toString());
+            }
+        });
+
         databaseReference.child("doctors").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listaDoctores.clear();
-                for (DataSnapshot children : snapshot.getChildren()){
+                listaDoctoresCompleta.clear();
+                for (DataSnapshot children : snapshot.getChildren()) {
                     DoctorDtoBD doctorDtoBD = children.getValue(DoctorDtoBD.class);
-                    Log.d("msg", doctorDtoBD.getApellido());
-                    listaDoctores.add(doctorDtoBD);
+                    listaDoctoresCompleta.add(doctorDtoBD);
                 }
-                DoctoresAdapter doctoresAdapter = new DoctoresAdapter();
-                doctoresAdapter.setContext(getContext());
-                doctoresAdapter.setNavController(navController);
-                doctoresAdapter.setListaDoctores(listaDoctores);
-                binding.recyclerDocs.setAdapter(doctoresAdapter);
-                binding.recyclerDocs.setLayoutManager(new LinearLayoutManager(getContext()));
+                doctoresAdapter.setListaDoctores(listaDoctoresCompleta);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
+        binding.recyclerDocs.setAdapter(doctoresAdapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        binding.recyclerDocs.setLayoutManager(layoutManager);
 
         binding.newDoctor.setOnClickListener(view ->{
             doctorService.random().enqueue(new Callback<DoctorResult>() {

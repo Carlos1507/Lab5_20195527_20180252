@@ -19,8 +19,10 @@ import com.bumptech.glide.Glide;
 import com.example.lab5_iot.DTOs.DoctorDtoBD;
 
 import java.util.List;
+import java.util.Locale;
 
 public class DoctoresAdapter extends RecyclerView.Adapter<DoctoresAdapter.DoctoresViewHolder>{
+    private List<DoctorDtoBD> listaDoctoresCompleta;
     private List<DoctorDtoBD> listaDoctores;
     private Context context;
     private NavController navController;
@@ -68,8 +70,25 @@ public class DoctoresAdapter extends RecyclerView.Adapter<DoctoresAdapter.Doctor
         return listaDoctores;
     }
 
-    public void setListaDoctores(List<DoctorDtoBD> listaDoctores) {
-        this.listaDoctores = listaDoctores;
+    public void setListaDoctores(List<DoctorDtoBD> listaDoctoresCompleta) {
+        this.listaDoctoresCompleta = listaDoctoresCompleta;
+        filtrarDoctores(""); // Actualizar la lista filtrada cuando cambie la lista completa
+    }
+
+    public void filtrarDoctores(String texto) {
+        listaDoctores.clear();
+        if (texto.isEmpty()) {
+            listaDoctores.addAll(listaDoctoresCompleta);
+        } else {
+            texto = texto.toLowerCase(Locale.getDefault());
+            for (DoctorDtoBD doctor : listaDoctoresCompleta) {
+                if (doctor.getNombre().toLowerCase(Locale.getDefault()).contains(texto)
+                        || doctor.getApellido().toLowerCase(Locale.getDefault()).contains(texto)) {
+                    listaDoctores.add(doctor);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     public Context getContext() {
