@@ -3,6 +3,7 @@ package com.example.lab5_iot;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.lab5_iot.DTOs.DoctorDtoBD;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -76,8 +78,13 @@ public class DoctoresAdapter extends RecyclerView.Adapter<DoctoresAdapter.Doctor
     }
 
     public void filtrarDoctores(String texto) {
-        listaDoctores.clear();
-        if (texto.isEmpty()) {
+        if (listaDoctores == null) {
+            listaDoctores = new ArrayList<>(); // Inicializar la lista si es nula
+        } else {
+            listaDoctores.clear();
+        }
+
+        if (TextUtils.isEmpty(texto)) {
             listaDoctores.addAll(listaDoctoresCompleta);
         } else {
             texto = texto.toLowerCase(Locale.getDefault());

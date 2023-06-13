@@ -55,8 +55,7 @@ public class ListaDocsFragment extends Fragment {
     private List<DoctorDtoBD> listaDoctoresCompleta = new ArrayList<>();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         Gson gson = new Gson();
@@ -64,12 +63,14 @@ public class ListaDocsFragment extends Fragment {
         User usuario = gson.fromJson(sharedPreferences.getString("user",""), User.class);
         binding = FragmentListaDocsBinding.inflate(inflater, container, false);
         binding.nombreUser.setText(usuario.getNombre());
-        List<DoctorDtoBD> listaDoctores = new ArrayList<>();
+
         NavController navController = NavHostFragment.findNavController(this);
 
         doctoresAdapter = new DoctoresAdapter();
         doctoresAdapter.setContext(getContext());
         doctoresAdapter.setNavController(navController);
+
+        doctoresAdapter.setListaDoctores(new ArrayList<>());
 
         binding.filtroDoctor.addTextChangedListener(new TextWatcher() {
             @Override
@@ -146,6 +147,7 @@ public class ListaDocsFragment extends Fragment {
         binding.imagenPerfil.setOnClickListener(view -> {
             navController.navigate(R.id.action_listaDocsFragment_to_perfilUserFragment);
         });
+
         return binding.getRoot();
     }
 }
