@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/listaDocsFragment">
 
     <fragment
         android:id="@+id/confirmCitaFragment"
@@ -21,6 +21,12 @@
         android:name="com.example.lab5_iot.Fragments.ListaDocsFragment"
         android:label=""
         tools:layout="@layout/fragment_lista_docs" >
+        <argument
+            android:name="usernameDoctor"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
         <action
             android:id="@+id/action_listaDocsFragment_to_perfilDoctorFragment"
             app:destination="@id/perfilDoctorFragment"
@@ -58,6 +64,12 @@
             app:destination="@id/confirmCitaFragment"
             app:popUpTo="@id/confirmCitaFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_perfilDoctor_to_listaDocsFragment"
+            app:destination="@id/listaDocsFragment"
+            app:popUpTo="@id/listaDocsFragment"
+            app:popUpToInclusive="true"/>
+
     </fragment>
     <fragment
         android:id="@+id/registroFragment"
@@ -79,6 +91,11 @@
             android:id="@+id/action_perfilUserFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_perfilUserFragment_to_listaDocsFragment"
+            app:destination="@id/listaDocsFragment"
+            app:popUpTo="@id/listaDocsFragment"
             app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

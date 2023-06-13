@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.lab5_iot.DTOs.User;
 import com.example.lab5_iot.R;
@@ -33,12 +34,15 @@ import java.util.Arrays;
 
 public class LoginFragment extends Fragment {
     FragmentLoginBinding binding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
+        Log.d("msg", "desde el onCreateView");
         return binding.getRoot();
     }
+
     FirebaseDatabase firebaseDatabase;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class LoginFragment extends Fragment {
 
         NavController navController = NavHostFragment.findNavController(LoginFragment.this);
         DatabaseReference databaseReference = firebaseDatabase.getReference();
+        Log.d("msg", "desde el onCreate");
         /*
         User user = new User();
         user.setNombre("Carlos");
@@ -69,5 +74,7 @@ public class LoginFragment extends Fragment {
 
     }
 
-
+ public void prueba(View view){
+     System.out.println("waaaaaa");
+ }
 }

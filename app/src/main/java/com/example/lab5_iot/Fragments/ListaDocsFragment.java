@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -16,6 +18,7 @@ import com.example.lab5_iot.DTOs.DoctorDtoBD;
 import com.example.lab5_iot.DTOs.DoctorResult;
 import com.example.lab5_iot.DTOs.RandomUser;
 import com.example.lab5_iot.DoctoresAdapter;
+import com.example.lab5_iot.R;
 import com.example.lab5_iot.Services.DoctorService;
 import com.example.lab5_iot.databinding.FragmentListaDocsBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -49,6 +52,7 @@ public class ListaDocsFragment extends Fragment {
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         binding = FragmentListaDocsBinding.inflate(inflater, container, false);
         List<DoctorDtoBD> listaDoctores = new ArrayList<>();
+        NavController navController = NavHostFragment.findNavController(this);
         databaseReference.child("doctors").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -60,6 +64,7 @@ public class ListaDocsFragment extends Fragment {
                 }
                 DoctoresAdapter doctoresAdapter = new DoctoresAdapter();
                 doctoresAdapter.setContext(getContext());
+                doctoresAdapter.setNavController(navController);
                 doctoresAdapter.setListaDoctores(listaDoctores);
                 binding.recyclerDocs.setAdapter(doctoresAdapter);
                 binding.recyclerDocs.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -69,8 +74,6 @@ public class ListaDocsFragment extends Fragment {
 
             }
         });
-      //  Log.d("msg",listaDoctores.get(0).getApellido());
-
 
         binding.newDoctor.setOnClickListener(view ->{
             doctorService.random().enqueue(new Callback<DoctorResult>() {
@@ -106,6 +109,9 @@ public class ListaDocsFragment extends Fragment {
 
                 }
             });
+        });
+        binding.imagenPerfil.setOnClickListener(view -> {
+            navController.navigate(R.id.action_listaDocsFragment_to_perfilUserFragment);
         });
         return binding.getRoot();
     }

@@ -2,13 +2,17 @@ package com.example.lab5_iot;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +23,7 @@ import java.util.List;
 public class DoctoresAdapter extends RecyclerView.Adapter<DoctoresAdapter.DoctoresViewHolder>{
     private List<DoctorDtoBD> listaDoctores;
     private Context context;
+    private NavController navController;
 
     @NonNull
     @Override
@@ -39,7 +44,12 @@ public class DoctoresAdapter extends RecyclerView.Adapter<DoctoresAdapter.Doctor
         location.setText(doctor.getPais()+ " - "+doctor.getEstado()+" - "+doctor.getCiudad());
         ImageView foto = holder.itemView.findViewById(R.id.image);
         Glide.with(context).load(doctor.getFotoDoctor()).into(foto);
-
+        Button perfilDocBtn = holder.itemView.findViewById(R.id.verDoctor);
+        perfilDocBtn.setOnClickListener(view1 -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("usernameDoctor", doctor.getUsername());
+            navController.navigate(R.id.action_listaDocsFragment_to_perfilDoctorFragment, bundle);
+        });
     }
 
     @Override
@@ -64,6 +74,14 @@ public class DoctoresAdapter extends RecyclerView.Adapter<DoctoresAdapter.Doctor
 
     public Context getContext() {
         return context;
+    }
+
+    public NavController getNavController() {
+        return navController;
+    }
+
+    public void setNavController(NavController navController) {
+        this.navController = navController;
     }
 
     public void setContext(Context context) {

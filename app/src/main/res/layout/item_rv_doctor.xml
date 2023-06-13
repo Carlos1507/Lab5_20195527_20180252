@@ -58,7 +58,7 @@
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/verDoctor"
         android:layout_width="79dp"
         android:layout_height="35dp"
         android:backgroundTint="#198eb6"

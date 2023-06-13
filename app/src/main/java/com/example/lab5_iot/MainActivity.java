@@ -6,13 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavHostController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.lab5_iot.DTOs.User;
+import com.example.lab5_iot.Fragments.LoginFragment;
 import com.example.lab5_iot.databinding.ActivityMainBinding;
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
@@ -26,46 +29,12 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    LoginFragment loginFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar!=null){
-            actionBar.hide();
-        }
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout.Builder(R.layout.fragment_login)
-                .setEmailButtonId(R.id.ingresar)
-                .setGoogleButtonId(R.id.loginGoogle)
-                .setFacebookButtonId(R.id.loginFacebook)
-                .build();
-        Intent intent = AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAuthMethodPickerLayout(customLayout)
-                .setAvailableProviders(Arrays.asList(
-                        new AuthUI.IdpConfig.EmailBuilder().build(),
-                        new AuthUI.IdpConfig.GoogleBuilder().build(),
-                        new AuthUI.IdpConfig.FacebookBuilder().build()
-                ))
-                .setIsSmartLockEnabled(false).build();
-        signInLauncher.launch(intent);
     }
-    ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
-            new FirebaseAuthUIActivityResultContract(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    User usuarioLogueado = new User();
-                    usuarioLogueado.setCorreo(user.getEmail());
-                    UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-                    userViewModel.getUsuarioLogueado().setValue(usuarioLogueado);
-                    Log.d("exito","exito");
-                }else{
-                    Log.e("mgs-tst","Canceló el flujo");
-                }
-            }
-    );
 }
