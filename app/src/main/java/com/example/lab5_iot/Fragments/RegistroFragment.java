@@ -47,6 +47,7 @@ public class RegistroFragment extends Fragment {
         navController = NavHostFragment.findNavController(this);
 
         binding.ingresar.setOnClickListener(view -> {
+            Log.d("correo", ".")   ;
             String nombre = binding.editTextNombre.getText().toString();
             String contraseniaa = binding.editTextPassword.getText().toString();
             String telefono = binding.editTextTelefono.getText().toString();
@@ -58,7 +59,10 @@ public class RegistroFragment extends Fragment {
             user.setApellido("");
             user.setTelefono(telefono);
             user.setCorreo(correo);
-            saveUserToDatabase(user);
+            Log.d("correo", user.getCorreo()+".")   ;
+            if (!(user.getNombre()==null || user.getCorreo()==null || user.getTelefono()==null || user.getContrasenia()==null))
+                saveUserToDatabase(user);
+
         });
 
         binding.registrate.setOnClickListener(view -> {

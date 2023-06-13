@@ -66,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
                     if (snapshot !=null){
                         for (DataSnapshot userSnapshot: snapshot.getChildren()){
                             user = userSnapshot.getValue(User.class);
+                            user.setKey(userSnapshot.getKey());
                             Log.d("user",user.getCorreo());
                             if (user.getContrasenia().equals(contrasenia)) {
                                 Log.d("msg","logueo exitoso");
