@@ -45,9 +45,11 @@ public class ConfirmCitaFragment extends Fragment {
             binding.textView2.setText("Felicidades se agendó su cita con el Dr. " + doctorUsername1);
         }
 
+
         binding.buttonList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("user-test",user.getNombre());
                 navController.navigate(R.id.action_confirmCitaFragment_to_listaDocsFragment);
             }
         });

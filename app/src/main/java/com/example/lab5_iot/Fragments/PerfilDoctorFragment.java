@@ -92,6 +92,7 @@ public class PerfilDoctorFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         DoctorDtoBD doctorDtoBD = snapshot.getValue(DoctorDtoBD.class);
                         args.putString("usernameDoctor", doctorDtoBD.getNombre());
+                        databaseReference.child("users").child(user.getKey()).setValue(user);
                         navController.navigate(R.id.action_perfilDoctorFragment_to_confirmCitaFragment, args);
                     }
 
@@ -100,7 +101,7 @@ public class PerfilDoctorFragment extends Fragment {
 
                     }
                 });
-                databaseReference.child("users").child(user.getKey()).setValue(user);
+
             }
         });
 

@@ -28,7 +28,7 @@
                     android:gravity="center_horizontal"
                     android:letterSpacing="-0.02"
                     android:lineSpacingExtra="0sp"
-                    android:text="Bienvenidoo"
+                    android:text="Bienvenido"
                     android:textColor="@color/tituloCeleste"
                     android:textSize="26sp"
                     android:textStyle="bold"
@@ -125,21 +125,23 @@
                         android:textColor="#858585"
                         android:fontFamily="@font/averiasanslibrebold"
                         android:hint="Ingrese su correo" />
+
                     <EditText
                         android:id="@+id/editTextContrasenia"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:layout_marginStart="26.7dp"
-                        android:layout_marginEnd="26.7dp"
                         android:layout_below="@+id/labelCorreo"
+
+                        android:layout_marginStart="26.7dp"
                         android:layout_marginTop="144dp"
-                        android:ems="10"
+                        android:layout_marginEnd="26.7dp"
                         android:background="@drawable/edittext_rounded_background"
-                        android:inputType="textPersonName"
-                        android:paddingStart="29.5dp"
-                        android:textColor="#858585"
+                        android:ems="10"
                         android:fontFamily="@font/averiasanslibrebold"
-                        android:hint="Ingrese su contraseña" />
+                        android:hint="Ingrese su contraseña"
+                        android:inputType="textPassword"
+                        android:paddingStart="29.5dp"
+                        android:textColor="#858585" />
 
                 </RelativeLayout>
 

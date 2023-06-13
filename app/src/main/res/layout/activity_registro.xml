@@ -96,7 +96,7 @@
                     android:ems="10"
                     android:fontFamily="@font/averiasanslibrebold"
                     android:hint="Ingrese su Contraseña"
-                    android:inputType="textPersonName"
+                    android:inputType="textPassword"
                     android:paddingStart="29.5dp"
                     android:textColor="#858585"
                     app:layout_constraintEnd_toEndOf="parent"
